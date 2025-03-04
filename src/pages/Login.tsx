@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -8,7 +9,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    setErrorMessage(null); // Reseta o erro ao tentar novamente
+    setErrorMessage(null);
 
     try {
       const response = await fetch("https://sua-api.com/auth/login", {
@@ -30,32 +31,32 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h2 className="text-2xl font-bold mb-4">Login</h2>
-      <input
-        className="border p-2 mb-2 w-80"
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        className="border p-2 mb-2 w-80"
-        type="password"
-        placeholder="Senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button
-        className="bg-blue-500 text-white px-4 py-2 rounded w-80 hover:bg-blue-600 transition"
-        onClick={handleLogin}
-      >
-        Entrar
-      </button>
+    <div className="container">
+      <div className="login-box">
+        <h2 className="login-title">Customer Care System</h2>
 
-      {errorMessage && (
-        <p className="text-red-500 mt-2 text-sm">{errorMessage}</p>
-      )}
+        <input
+          className="input"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          className="input"
+          type="password"
+          placeholder="Senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button className="button" onClick={handleLogin}>
+          Entrar
+        </button>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
     </div>
   );
 };
